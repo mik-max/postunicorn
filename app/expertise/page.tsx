@@ -1,4 +1,8 @@
 import type { Metadata } from 'next';
+import ExpertiseHero from '@/components/sections/expertise-hero';
+import ExpertiseAreas from '@/components/sections/expertise-areas';
+import ExpertiseServices from '@/components/sections/expertise-services';
+import ExpertiseCta from '@/components/sections/expertise-cta';
 
 export const metadata: Metadata = {
   title: 'Expertise & Services',
@@ -8,8 +12,11 @@ export const metadata: Metadata = {
 
 export default function ExpertisePage() {
   return (
-    <main className="min-h-screen pt-24">
-      {/* Sections: Core Expertise table, Services offered, Pricing & Availability, Testimonial */}
+    <main>
+      <ExpertiseHero />
+      <ExpertiseAreas />
+      <ExpertiseServices />
+      <ExpertiseCta />
     </main>
   );
 }

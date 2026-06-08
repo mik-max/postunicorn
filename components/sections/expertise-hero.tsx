@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { IMAGES } from '@/constants/images';
 
-export default function AboutHero() {
+export default function ExpertiseHero() {
   return (
     <section className="overflow-hidden pt-24">
       <div className="max-w-7xl mx-auto px-6">
@@ -14,16 +14,16 @@ export default function AboutHero() {
           {/* Left — content */}
           <div className="py-16">
             <p className="text-[10px] tracking-[0.35em] uppercase font-sans text-muted-foreground mb-8">
-              About
+              Expertise &amp; Services
             </p>
             <h1 className="text-[clamp(44px,7vw,60px)] leading-[0.95] font-black tracking-tight mb-8">
-              A Global Mindset,<br />
-              Grounded in{' '}
-              <em className="not-italic text-accent">Purpose</em>.
+              Where Technical Depth<br />
+              Meets Strategic{' '}
+              <em className="not-italic text-accent">Foresight</em>.
             </h1>
             <p className="text-base text-muted-foreground font-sans leading-relaxed max-w-md mb-10">
-              Follower of Christ. Lifelong learner. Managing Partner at Black Unicorn &amp; Allied
-              Partners. 12+ years bridging ideas and impact across EMEA and North America.
+              From AI governance frameworks to venture growth strategies, every engagement
+              is built on research-backed insight and a commitment to outcomes that endure.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
@@ -33,7 +33,7 @@ export default function AboutHero() {
                   'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
                 )}
               >
-                Let&apos;s Connect <ArrowUpRight className="h-3.5 w-3.5" />
+                Work With Me <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               <Link
                 href="/about/resume"
