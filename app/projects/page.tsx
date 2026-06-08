@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import ProjectsHero from '@/components/sections/projects-hero';
+import ProjectsList from '@/components/sections/projects-list';
+import ProjectsCta from '@/components/sections/projects-cta';
 
 export const metadata: Metadata = {
   title: 'Projects & Impact',
@@ -8,8 +11,10 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen pt-24">
-      {/* Sections: Project cards (BUAP, Wennovation, AI Ethics Research) */}
+    <main>
+      <ProjectsHero />
+      <ProjectsList />
+      <ProjectsCta />
     </main>
   );
 }
