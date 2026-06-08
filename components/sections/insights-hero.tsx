@@ -1,0 +1,111 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import { IMAGES } from '@/constants/images';
+
+export default function InsightsHero() {
+  return (
+    <section className="overflow-hidden pt-24">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* Left — content */}
+          <div className="py-16">
+            <p className="text-[10px] tracking-[0.35em] uppercase font-sans text-muted-foreground mb-8">
+              Insights &amp; Research
+            </p>
+            <h1 className="text-[clamp(44px,7vw,60px)] leading-[0.95] font-black tracking-tight mb-8">
+              Perspectives That<br />
+              Challenge, Ideas That{' '}
+              <em className="not-italic text-accent">Endure</em>.
+            </h1>
+            <p className="text-base text-muted-foreground font-sans leading-relaxed max-w-md mb-10">
+              Writing, research, and reflections on AI governance, venture growth, leadership,
+              and what it means to build with purpose in a rapidly shifting world.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/connect"
+                className={cn(
+                  buttonVariants(),
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                )}
+              >
+                Get In Touch <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+              <Link
+                href="/expertise"
+                className={cn(
+                  buttonVariants({ variant: 'outline' }),
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                )}
+              >
+                View Expertise <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right — staggered mosaic (desktop only) */}
+          <div className="hidden lg:flex gap-3">
+            {/* Column 1 — pulls up to bleed above section */}
+            <div className="flex-1 flex flex-col gap-3 -mt-24">
+              <div className="relative rounded-2xl overflow-hidden h-[300px]">
+                <Image
+                  src={IMAGES.expertise}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="22vw"
+                  priority
+                />
+              </div>
+              <div className="relative rounded-2xl overflow-hidden h-[200px]">
+                <Image
+                  src={IMAGES.connect}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="22vw"
+                />
+              </div>
+              <div className="relative rounded-2xl overflow-hidden h-[180px]">
+                <Image
+                  src={IMAGES.hero}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="22vw"
+                />
+              </div>
+            </div>
+
+            {/* Column 2 — offset downward */}
+            <div className="flex-1 flex flex-col gap-3 mt-16">
+              <div className="relative rounded-2xl overflow-hidden h-[360px]">
+                <Image
+                  src={IMAGES.aboutCta}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="22vw"
+                />
+              </div>
+              <div className="relative rounded-2xl overflow-hidden h-[220px]">
+                <Image
+                  src={IMAGES.connect}
+                  alt=""
+                  fill
+                  className="object-cover object-top"
+                  sizes="22vw"
+                />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

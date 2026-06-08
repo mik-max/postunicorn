@@ -1,15 +1,22 @@
 import type { Metadata } from 'next';
+import InsightsHero from '@/components/sections/insights-hero';
+import InsightsList from '@/components/sections/insights-list';
+import InsightsResearch from '@/components/sections/insights-research';
+import InsightsCta from '@/components/sections/insights-cta';
 
 export const metadata: Metadata = {
-  title: 'Insights',
+  title: 'Insights & Research',
   description:
-    'Fresh perspectives on leadership, innovation, AI, and the human side of progress.',
+    'Fresh perspectives on leadership, innovation, AI, and the human side of progress — alongside academic research on AI governance and emerging markets.',
 };
 
 export default function InsightsPage() {
   return (
-    <main className="min-h-screen pt-24">
-      {/* Sections: Featured articles, Video embeds (future), Email subscribe CTA */}
+    <main>
+      <InsightsHero />
+      <InsightsList />
+      <InsightsResearch />
+      <InsightsCta />
     </main>
   );
 }
