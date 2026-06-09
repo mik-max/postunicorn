@@ -107,7 +107,7 @@ export default function Hero() {
     <section className="min-h-[100svh] flex flex-col pt-24 ">
       {/* Headline area — grows to fill space */}
       <div
-        className="flex-1 max-w-[calc(100%-2rem)] sm:max-w-7xl mx-auto px-6 flex flex-col justify-center py-16 rounded-4xl bg-gray-900"
+        className="flex-1 w-[calc(100%-2rem)] sm:w-full max-w-7xl mx-4 sm:mx-auto px-6 flex flex-col justify-center py-16 rounded-4xl bg-gray-900"
         style={{
           backgroundImage: `url(${IMAGES.hero})`,
           backgroundSize: 'cover',
