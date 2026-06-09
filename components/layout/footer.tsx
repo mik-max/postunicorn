@@ -78,7 +78,7 @@ export default function Footer() {
           </div>
           <p
             aria-hidden
-            className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-[50px] md:text-[80px] xl:text-[120px] font-bold font-sans tracking-tighter text-foreground/12 leading-none select-none pointer-events-none uppercase"
+            className="absolute -bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 whitespace-nowrap text-[50px] md:text-[80px] xl:text-[120px] font-bold font-sans tracking-tighter text-foreground/12 leading-none select-none pointer-events-none uppercase"
           >
             Postunicorn
           </p>
