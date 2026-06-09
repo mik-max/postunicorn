@@ -1,6 +1,11 @@
 'use client';
 
+import { useRef, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const values = [
   {
@@ -29,6 +34,45 @@ const reveal = {
 };
 
 export default function AboutValues() {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const titles = gridRef.current?.querySelectorAll<HTMLElement>('.value-title') ?? [];
+    const descs  = gridRef.current?.querySelectorAll<HTMLElement>('.value-desc')  ?? [];
+
+    gsap.set(titles, { opacity: 0, y: 20 });
+    gsap.set(descs,  { opacity: 0 });
+
+    const ctx = gsap.context(() => {
+      gsap.to(titles, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: gridRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+      gsap.to(descs, {
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+        stagger: 0.15,
+        delay: 0.35,
+        scrollTrigger: {
+          trigger: gridRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
@@ -47,28 +91,22 @@ export default function AboutValues() {
           <div className="flex-1 h-px bg-border" />
         </motion.div>
 
-        {/* Values grid — gap-px bg-border creates hairline dividers */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={reveal}
-          className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border"
-        >
+        {/* Values grid */}
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
           {values.map((v) => (
             <div key={v.title} className="bg-background p-8 md:p-10 flex flex-col gap-6">
               <span className="text-[10px] font-sans text-accent">
                 {v.number}/
               </span>
-              <h3 className="text-2xl md:text-3xl font-sans font-semibold leading-tight">
+              <h3 className="value-title text-2xl md:text-3xl font-sans font-semibold leading-tight">
                 {v.title}
               </h3>
-              <p className="text-sm text-muted-foreground font-sans leading-relaxed">
+              <p className="value-desc text-sm text-muted-foreground font-sans leading-relaxed">
                 {v.description}
               </p>
             </div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>
