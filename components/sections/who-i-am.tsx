@@ -78,19 +78,12 @@ export default function WhoIAm() {
     const cardTexts = snapshotRef.current?.querySelectorAll<HTMLElement>('.snapshot-card h4, .snapshot-card .card-desc') ?? [];
     const imgWrapperEl = imgWrapperRef.current;
 
-    // Calculate how far left to shift the image so it starts visually centered in the section.
-    let xOffset = 0;
-    if (snapshotRef.current && imgWrapperEl) {
-      const sectionRect = snapshotRef.current.getBoundingClientRect();
-      const imgRect = imgWrapperEl.getBoundingClientRect();
-      xOffset = (sectionRect.left + sectionRect.width / 2) - (imgRect.left + imgRect.width / 2);
-    }
-
     // Set initial state before paint to prevent flash.
     if (buttonEl) gsap.set(buttonEl, { opacity: 0 });
     if (valueLabel) gsap.set(valueLabel, { opacity: 0, y: 12 });
     gsap.set(valueItems, { opacity: 0, y: 16 });
-    if (imgWrapperEl) gsap.set(imgWrapperEl, { x: xOffset, scale: 1.35 });
+    // Keep hidden until onEnter positions it at center — prevents column-flash while scrolling in.
+    if (imgWrapperEl) gsap.set(imgWrapperEl, { scale: 1.35, opacity: 0 });
     gsap.set(cards, { opacity: 0, y: 60 });
     gsap.set(cardTexts, { opacity: 0 });
 
@@ -156,10 +149,22 @@ export default function WhoIAm() {
             trigger: snapshotRef.current,
             start: 'top 60%',
             toggleActions: 'play none none none',
+            onEnter: () => {
+              // getBoundingClientRect() is called here — at scroll time — so the layout is
+              // always fully settled whether the user navigated from another page or loaded directly.
+              // Guard against re-entry after the animation has already played.
+              if (!snapshotRef.current || !imgWrapperEl || tl.progress() > 0) return;
+              const sR = snapshotRef.current.getBoundingClientRect();
+              const iR = imgWrapperEl.getBoundingClientRect();
+              gsap.set(imgWrapperEl, {
+                x: (sR.left + sR.width / 2) - (iR.left + iR.width / 2),
+                opacity: 1,
+              });
+            },
           },
         });
 
-        // 5 — Image travels from center to its column and scales down
+        // 5 — Image travels from section center to its column and scales down
         if (imgWrapperEl) {
           tl.to(imgWrapperEl, { x: 0, scale: 1, duration: 1.5, ease: 'power3.inOut' });
         }
