@@ -27,12 +27,20 @@ const ctaDescLines = [
 ];
 
 export default function HomeCta() {
-  const h2Ref   = useRef<HTMLHeadingElement>(null);
-  const descRef = useRef<HTMLParagraphElement>(null);
+  const h2Ref     = useRef<HTMLHeadingElement>(null);
+  const descRef   = useRef<HTMLParagraphElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const imgRef    = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const words = h2Ref.current?.querySelectorAll<HTMLElement>('.cta-word') ?? [];
-    const lines = descRef.current?.querySelectorAll<HTMLElement>('.cta-line') ?? [];
+    const words    = h2Ref.current?.querySelectorAll<HTMLElement>('.cta-word') ?? [];
+    const lines    = descRef.current?.querySelectorAll<HTMLElement>('.cta-line') ?? [];
+    const buttonEl = buttonRef.current;
+    const imgEl    = imgRef.current;
+
+    if (buttonEl) gsap.set(buttonEl, { opacity: 0 });
+    if (imgEl)    gsap.set(imgEl,    { opacity: 0, y: 100 });
+
     const ctx = gsap.context(() => {
       gsap.fromTo(words, { yPercent: 110 }, {
         yPercent: 0,
@@ -56,6 +64,31 @@ export default function HomeCta() {
           toggleActions: 'play none none none',
         },
       });
+      if (buttonEl) {
+        gsap.to(buttonEl, {
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: buttonEl,
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
+      if (imgEl) {
+        gsap.to(imgEl, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: imgEl,
+            start: 'top 70%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
     });
     return () => ctx.revert();
   }, []);
@@ -97,18 +130,20 @@ export default function HomeCta() {
               ))}
             </p>
 
-            <Link
-              href="/connect"
-              className={cn(
-                buttonVariants({ size: 'lg' }),
-                'text-[10px] tracking-[0.2em] uppercase px-10 gap-2'
-              )}
-            >
-              Start a Conversation <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            <div ref={buttonRef} className="inline-flex">
+              <Link
+                href="/connect"
+                className={cn(
+                  buttonVariants({ size: 'lg' }),
+                  'text-[10px] tracking-[0.2em] uppercase px-10 gap-2'
+                )}
+              >
+                Start a Conversation <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
 
-          <div className="shrink-0">
+          <div ref={imgRef} className="shrink-0">
             <Image
               src={IMAGES.connect}
               alt=""
