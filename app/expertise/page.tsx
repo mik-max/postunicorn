@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ExpertiseHero from '@/components/sections/expertise-hero';
 import ExpertiseAreas from '@/components/sections/expertise-areas';
 import ExpertiseServices from '@/components/sections/expertise-services';
+import ExpertiseTestimonials from '@/components/sections/expertise-testimonials';
 import ExpertiseCta from '@/components/sections/expertise-cta';
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function ExpertisePage() {
       <ExpertiseHero />
       <ExpertiseAreas />
       <ExpertiseServices />
+      <ExpertiseTestimonials />
       <ExpertiseCta />
     </main>
   );
