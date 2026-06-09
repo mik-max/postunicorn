@@ -1,10 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const reveal = {
   hidden: { opacity: 0, y: 32 },
@@ -26,6 +30,33 @@ export default function ConnectForm() {
   const [form, setForm] = useState({ name: '', email: '', interest: '', message: '' });
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const formColRef = useRef<HTMLDivElement>(null);
+  const infoColRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const formEl = formColRef.current;
+    const infoEl = infoColRef.current;
+
+    if (formEl) gsap.set(formEl, { opacity: 0, y: 32 });
+    if (infoEl) gsap.set(infoEl, { opacity: 0, y: 32 });
+
+    const ctx = gsap.context(() => {
+      if (formEl) {
+        gsap.to(formEl, {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: formEl, start: 'top 85%', toggleActions: 'play none none none' },
+        });
+      }
+      if (infoEl) {
+        gsap.to(infoEl, {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.15,
+          scrollTrigger: { trigger: infoEl, start: 'top 85%', toggleActions: 'play none none none' },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -80,12 +111,7 @@ export default function ConnectForm() {
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 lg:gap-24">
 
           {/* Left — form */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={reveal}
-          >
+          <div ref={formColRef}>
             {status === 'success' ? (
               <div className="flex flex-col gap-4 py-16">
                 <span className="text-[10px] font-sans text-accent tracking-[0.2em] uppercase">
@@ -193,16 +219,10 @@ export default function ConnectForm() {
                 </div>
               </form>
             )}
-          </motion.div>
+          </div>
 
           {/* Right — contact info */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            variants={reveal}
-            className="flex flex-col gap-10 justify-start lg:pt-2"
-          >
+          <div ref={infoColRef} className="flex flex-col gap-10 justify-start lg:pt-2">
             <div>
               <p className="text-[10px] uppercase tracking-[0.3em] font-sans text-muted-foreground mb-6">
                 Other Ways to Reach Me
@@ -252,7 +272,7 @@ export default function ConnectForm() {
                 If you&apos;ve got the right vision — let&apos;s talk.
               </p>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>
