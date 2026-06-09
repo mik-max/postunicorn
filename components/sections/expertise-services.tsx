@@ -141,7 +141,7 @@ export default function ExpertiseServices() {
         {/* Services grid */}
         <div ref={servicesRef} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
           {services.map((service, i) => (
-            <div key={service.title} className="bg-secondary p-10 flex flex-col gap-5">
+            <div key={service.title} className="bg-secondary p-6 md:p-10 flex flex-col gap-5">
               <span className="text-[10px] font-sans text-accent">0{i + 1}/</span>
               <h3 className="sv-title text-2xl font-sans font-semibold leading-tight tracking-tight">
                 {service.title}

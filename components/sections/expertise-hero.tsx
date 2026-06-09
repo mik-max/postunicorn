@@ -101,12 +101,12 @@ export default function ExpertiseHero() {
               From AI governance frameworks to venture growth strategies, every engagement
               is built on research-backed insight and a commitment to outcomes that endure.
             </p>
-            <div ref={buttonsRef} className="flex flex-wrap gap-3">
+            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/connect"
                 className={cn(
                   buttonVariants(),
-                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto'
                 )}
               >
                 Work With Me <ArrowUpRight className="h-3.5 w-3.5" />
@@ -115,7 +115,7 @@ export default function ExpertiseHero() {
                 href="/about/resume"
                 className={cn(
                   buttonVariants({ variant: 'outline' }),
-                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto'
                 )}
               >
                 View Resume <ArrowUpRight className="h-3.5 w-3.5" />

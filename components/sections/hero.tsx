@@ -107,7 +107,7 @@ export default function Hero() {
     <section className="min-h-[100svh] flex flex-col pt-24 ">
       {/* Headline area — grows to fill space */}
       <div
-        className="flex-1 max-w-7xl mx-auto px-6 w-full flex flex-col justify-center py-16 rounded-4xl bg-gray-900"
+        className="flex-1 max-w-[calc(100%-2rem)] sm:max-w-7xl mx-auto px-6 flex flex-col justify-center py-16 rounded-4xl bg-gray-900"
         style={{
           backgroundImage: `url(${IMAGES.hero})`,
           backgroundSize: 'cover',
@@ -171,7 +171,7 @@ export default function Hero() {
 
           {/* Stats + CTAs */}
           <div className="space-y-8">
-            <div ref={statsRef} className="grid grid-cols-4 gap-4">
+            <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-4 gap-y-8">
               {stats.map((s) => (
                 <div key={s.label}>
                   <p
@@ -188,12 +188,12 @@ export default function Hero() {
               ))}
             </div>
 
-            <div ref={buttonsRef} className="flex flex-wrap gap-3">
+            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/expertise"
                 className={cn(
                   buttonVariants({ size: 'lg' }),
-                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto'
                 )}
               >
                 Book a Consultation <ArrowUpRight className="h-3.5 w-3.5" />
@@ -202,7 +202,7 @@ export default function Hero() {
                 href="/about"
                 className={cn(
                   buttonVariants({ variant: 'outline', size: 'lg' }),
-                  'text-[10px] tracking-[0.2em] uppercase px-8'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 w-full sm:w-auto'
                 )}
               >
                 Discover My Journey

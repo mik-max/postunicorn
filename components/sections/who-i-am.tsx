@@ -153,7 +153,7 @@ export default function WhoIAm() {
               // getBoundingClientRect() is called here — at scroll time — so the layout is
               // always fully settled whether the user navigated from another page or loaded directly.
               // Guard against re-entry after the animation has already played.
-              if (!snapshotRef.current || !imgWrapperEl || tl.progress() > 0) return;
+              if (!snapshotRef.current || !imgWrapperEl || imgWrapperEl.offsetWidth === 0 || tl.progress() > 0) return;
               const sR = snapshotRef.current.getBoundingClientRect();
               const iR = imgWrapperEl.getBoundingClientRect();
               gsap.set(imgWrapperEl, {

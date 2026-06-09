@@ -143,7 +143,7 @@ export default function HomeCta() {
             </div>
           </div>
 
-          <div ref={imgRef} className="shrink-0">
+          <div ref={imgRef} className="shrink-0 hidden md:block">
             <Image
               src={IMAGES.connect}
               alt=""

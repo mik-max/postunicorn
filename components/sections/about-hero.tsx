@@ -101,12 +101,12 @@ export default function AboutHero() {
               Follower of Christ. Lifelong learner. Managing Partner at Black Unicorn &amp; Allied
               Partners. 12+ years bridging ideas and impact across EMEA and North America.
             </p>
-            <div ref={buttonsRef} className="flex flex-wrap gap-3">
+            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/connect"
                 className={cn(
                   buttonVariants(),
-                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto'
                 )}
               >
                 Let&apos;s Connect <ArrowUpRight className="h-3.5 w-3.5" />
@@ -115,7 +115,7 @@ export default function AboutHero() {
                 href="/about/resume"
                 className={cn(
                   buttonVariants({ variant: 'outline' }),
-                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto'
                 )}
               >
                 View Resume <ArrowUpRight className="h-3.5 w-3.5" />

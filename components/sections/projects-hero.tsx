@@ -93,16 +93,16 @@ export default function ProjectsHero() {
               A selection of the ventures, research initiatives, and ecosystems I&apos;ve helped
               build — from Lagos innovation hubs to EMEA governance frameworks.
             </p>
-            <div ref={buttonsRef} className="flex flex-wrap gap-3">
+            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/connect"
-                className={cn(buttonVariants(), 'text-[10px] tracking-[0.2em] uppercase px-8 gap-2')}
+                className={cn(buttonVariants(), 'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto')}
               >
                 Let&apos;s Collaborate <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               <Link
                 href="/about"
-                className={cn(buttonVariants({ variant: 'outline' }), 'text-[10px] tracking-[0.2em] uppercase px-8 gap-2')}
+                className={cn(buttonVariants({ variant: 'outline' }), 'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto')}
               >
                 About Me <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>

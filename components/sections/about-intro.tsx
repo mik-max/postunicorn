@@ -115,7 +115,7 @@ export default function AboutIntro() {
             </p>
             <div className="divide-y divide-border">
               {details.map((d) => (
-                <div key={d.label} className="detail-row py-5 grid grid-cols-2 gap-4">
+                <div key={d.label} className="detail-row py-5 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                   <span className="text-[11px] uppercase tracking-[0.18em] font-sans text-muted-foreground leading-snug">
                     {d.label}
                   </span>

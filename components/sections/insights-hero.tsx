@@ -94,12 +94,12 @@ export default function InsightsHero() {
               Writing, research, and reflections on AI governance, venture growth, leadership,
               and what it means to build with purpose in a rapidly shifting world.
             </p>
-            <div ref={buttonsRef} className="flex flex-wrap gap-3">
+            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/connect"
                 className={cn(
                   buttonVariants(),
-                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto'
                 )}
               >
                 Get In Touch <ArrowUpRight className="h-3.5 w-3.5" />
@@ -108,7 +108,7 @@ export default function InsightsHero() {
                 href="/expertise"
                 className={cn(
                   buttonVariants({ variant: 'outline' }),
-                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto'
                 )}
               >
                 View Expertise <ArrowUpRight className="h-3.5 w-3.5" />

@@ -93,12 +93,12 @@ export default function ConnectHero() {
               Whether it&apos;s a consultation, a collaboration, a speaking engagement, or simply
               a conversation — reach out. The right connections create lasting impact.
             </p>
-            <div ref={buttonsRef} className="flex flex-wrap gap-3">
+            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="#contact-form"
                 className={cn(
                   buttonVariants(),
-                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto'
                 )}
               >
                 Send a Message <ArrowUpRight className="h-3.5 w-3.5" />
@@ -107,7 +107,7 @@ export default function ConnectHero() {
                 href="/about"
                 className={cn(
                   buttonVariants({ variant: 'outline' }),
-                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2'
+                  'text-[10px] tracking-[0.2em] uppercase px-8 gap-2 w-full sm:w-auto'
                 )}
               >
                 Learn About Me <ArrowUpRight className="h-3.5 w-3.5" />
